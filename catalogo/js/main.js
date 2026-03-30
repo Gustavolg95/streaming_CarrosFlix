@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const profileIcon = document.querySelector('.profile-icon');
         
         if (kidsLink) kidsLink.textContent = nomePerfil;
-        if (profileIcon) profileIcon.src = imagemPerfil;
+        if (profileIcon) profileIcon.src = '../' + imagemPerfil;
     }
 
     const container = document.getElementById('main-content');
