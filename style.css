@@ -1,0 +1,534 @@
+/* ==========================================
+   VARIÁVEIS CSS
+   ========================================== */
+
+:root {
+    /* Cores */
+    --netflix-black: #141414;
+    --netflix-dark: #1a1a1a;
+    --netflix-darker: #0f0f0f;
+    --netflix-red: #e50914;
+    --text-white: #fff;
+
+    /* Espaçamentos */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.8rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+
+    /* Tamanhos */
+    --profile-size-desktop: 200px;
+    --profile-size-tablet: 160px;
+    --profile-size-mobile: 140px;
+    --profile-size-small: 120px;
+    --profile-size-xs: 100px;
+
+    /* Sombras */
+    --shadow-header: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-text: 2px 2px 8px rgba(229, 9, 20, 0.3);
+    --shadow-text-light: 0 2px 8px rgba(229, 9, 20, 0.2);
+
+    /* Transições */
+    --transition-fast: 0.3s ease;
+}
+
+/* ==========================================
+   RESET E ESTILOS GLOBAIS
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--netflix-black);
+    color: var(--text-white);
+    line-height: 1.6;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    background: linear-gradient(135deg, var(--netflix-dark) 0%, var(--netflix-darker) 100%);
+    padding: var(--spacing-md) var(--spacing-xl);
+    box-shadow: var(--shadow-header);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--netflix-red);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-shadow: var(--shadow-text);
+}
+
+/* ==========================================
+   THEME TOGGLE BUTTON
+   ========================================== */
+
+.theme-toggle {
+    padding: 0.5rem;
+    border: 1px solid var(--netflix-red);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all var(--transition-fast);
+    min-width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.theme-toggle:hover {
+    background: var(--netflix-red);
+    transform: scale(1.05);
+}
+
+/* ==========================================
+   MAIN
+   ========================================== */
+
+main {
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    min-height: calc(1vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: slideInUp 0.6s ease-out;
+}
+
+main > h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+/* ==========================================
+   SECTION PROFILES
+   ========================================== */
+
+.profiles {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.profiles ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--profile-size-desktop), 1fr));
+    gap: var(--spacing-xl);
+    place-items: center;
+}
+
+/* ==========================================
+   PROFILE CARD
+   ========================================== */
+
+.profile {
+    cursor: pointer;
+    transition: var(--transition-fast);
+    animation: slideInUp 0.6s ease-out;
+    text-decoration: none;
+    display: block;
+    position: relative;
+}
+
+.profile:nth-child(1) { animation-delay: 0.1s; }
+.profile:nth-child(2) { animation-delay: 0.2s; }
+.profile:nth-child(3) { animation-delay: 0.3s; }
+.profile:nth-child(4) { animation-delay: 0.4s; }
+
+.profile figure {
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 1;
+    width: var(--profile-size-desktop);
+    height: var(--profile-size-desktop);
+}
+
+.profile figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+    display: block;
+}
+
+.profile figure figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+    padding: var(--spacing-lg) var(--spacing-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform var(--transition-fast);
+    color: var(--text-white);
+}
+
+/* HOVER EFFECTS */
+.profile:hover {
+    transform: scale(1.05);
+}
+
+.profile:hover figure {
+   box-shadow:var(--text-white) 0px 4px 10px;
+}
+
+body.light-mode .profile:hover figure {
+    box-shadow: #1a1a1a 0px 4px 10px;
+}
+
+.profile:hover figure img {
+    transform: scale(1.1);
+    filter: brightness(0.7) saturate(1.2);
+}
+
+.profile:hover figure figcaption {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   LIGHT MODE
+   ========================================== */
+
+body.light-mode {
+    background-color: #f5f5f5;
+    color: #1a1a1a;
+}
+
+body.light-mode header {
+    background: linear-gradient(135deg, #f2f2f2 0%, #e0e0e0 100%);
+}
+
+body.light-mode header h1 {
+    color: #d32f2f;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .profile figure figcaption {
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.9) 100%);
+    color: #111;
+}
+
+body.light-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.85);
+    color: #111;
+    border-color: #d32f2f;
+}
+
+body.light-mode .theme-toggle:hover {
+    background: #d32f2f;
+    color: #fff;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   ========================================== */
+
+/* DESKTOP ULTRA-WIDE (2560px+) */
+@media (min-width: 2560px) {
+    .profiles ul {
+        grid-template-columns: repeat(4, 250px);
+        gap: 3rem;
+    }
+
+    .profile figure {
+        width: 250px;
+        height: 250px;
+    }
+
+    header h1 {
+        font-size: 3rem;
+    }
+
+    main > h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* DESKTOP LARGE (1440px - 2559px) */
+@media (min-width: 1440px) and (max-width: 2559px) {
+    .profiles ul {
+        grid-template-columns: repeat(4, 220px);
+        gap: 2.5rem;
+    }
+
+    .profile figure {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+/* DESKTOP STANDARD (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .profiles ul {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 2rem;
+    }
+
+    .profile figure {
+        width: 180px;
+        height: 180px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    main > h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* TABLET LANDSCAPE (769px - 1023px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+    header {
+        padding: 1rem 1.5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        letter-spacing: 0.12em;
+    }
+
+    main {
+        padding: 2.5rem 1.5rem;
+    }
+
+    main > h1 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .profiles ul {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 2rem;
+    }
+
+    .profile figure {
+        width: 160px;
+        height: 160px;
+    }
+
+    .profile figure figcaption {
+        padding: 1.2rem 0.8rem;
+        font-size: 1rem;
+    }
+}
+
+/* TABLET PORTRAIT & MOBILE LARGE (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    header {
+        padding: 0.8rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0.1em;
+    }
+
+    main {
+        padding: 2rem 1rem;
+    }
+
+    main > h1 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .profiles ul {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .profile figure {
+        width: 140px;
+        height: 140px;
+    }
+
+    .profile figure figcaption {
+        padding: 1rem 0.7rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* MOBILE STANDARD (361px - 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+    header {
+        padding: 0.7rem 0.8rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.08em;
+    }
+
+    .theme-toggle {
+        min-width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 1.5rem 0.8rem;
+    }
+
+    main > h1 {
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .profiles ul {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1.2rem;
+    }
+
+    .profile figure {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile figure figcaption {
+        padding: 0.8rem 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .profile:hover {
+        transform: scale(1.02);
+    }
+}
+
+/* MOBILE SMALL (max-width: 360px) */
+@media (max-width: 360px) {
+    header {
+        padding: 0.6rem 0.7rem;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+        letter-spacing: 0.05em;
+    }
+
+    .theme-toggle {
+        min-width: 1.8rem;
+        height: 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 1.2rem 0.7rem;
+    }
+
+    main > h1 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .profiles ul {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+    }
+
+    .profile figure {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile figure figcaption {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .profile:hover {
+        transform: none;
+    }
+
+    .profile:hover figure img {
+        transform: none;
+        filter: none;
+    }
+
+    .profile:hover figure figcaption {
+        transform: translateY(100%);
+    }
+}
+
+/* ORIENTAÇÃO LANDSCAPE PARA MOBILE */
+@media (max-height: 500px) and (orientation: landscape) {
+    main {
+        padding: 1rem 0.5rem;
+        min-height: auto;
+    }
+
+    main > h1 {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .profiles ul {
+        gap: 0.8rem;
+    }
+}
+
+/* ACESSIBILIDADE - PREFERÊNCIA POR MOVIMENTO REDUZIDO */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* SUPORTE PARA TELAS DE ALTA DENSIDADE (RETINA) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .profile figure img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ==========================================
+   ANIMAÇÕES
+   ========================================== */
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
